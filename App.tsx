@@ -20,6 +20,22 @@ const schemes: Scheme[] = [
     ],
     items: [1, 2, 3],
   },
+  {
+    name: 'AnotherOne',
+    createdAt: new Date(),
+    lastChange: new Date(),
+    dataFields: [
+      {
+        type: 'String',
+        name: 'Field1',
+      },
+      {
+        type: 'Number',
+        name: 'Field2',
+      },
+    ],
+    items: [1, 2],
+  },
 ];
 
 const App = () => {

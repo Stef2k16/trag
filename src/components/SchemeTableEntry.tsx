@@ -9,7 +9,7 @@ interface SchemeTableEntryProps {
 const SchemeTableEntry: FC<SchemeTableEntryProps> = ({scheme}) => (
   <Box borderBottomWidth="1" borderColor="coolGray.200" py={4}>
     <HStack justifyContent="space-between" alignItems="center">
-      <Avatar bg="primary.400">{scheme.name.charAt(0)}</Avatar>
+      <Avatar bg="primary.700">{scheme.name.charAt(0)}</Avatar>
       <VStack>
         <Text fontSize="lg" bold>
           {scheme.name}
