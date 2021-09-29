@@ -1,69 +1,36 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * Generated with the TypeScript template
- * https://github.com/react-native-community/react-native-template-typescript
- *
- * @format
- */
-
 import React from 'react';
-import {
-  Link,
-  Text,
-  HStack,
-  Center,
-  Heading,
-  Switch,
-  useColorMode,
-  NativeBaseProvider,
-  VStack,
-  Code,
-} from 'native-base';
-import NativeBaseIcon from './src/components/NativeBaseIcon';
+import {Box, Heading, NativeBaseProvider, VStack} from 'native-base';
+import SchemeTable from './src/components/SchemeTable';
+import {Scheme} from './src/entities/Scheme';
 
-// Color Switch Component
-function ToggleDarkMode() {
-  const {colorMode, toggleColorMode} = useColorMode();
-  return (
-    <HStack space={2} alignItems="center">
-      <Text>Dark</Text>
-      <Switch
-        isChecked={colorMode === 'light'}
-        onToggle={toggleColorMode}
-        aria-label={
-          colorMode === 'light' ? 'switch to dark mode' : 'switch to light mode'
-        }
-      />
-      <Text>Light</Text>
-    </HStack>
-  );
-}
+const schemes: Scheme[] = [
+  {
+    name: 'Scheme1',
+    createdAt: new Date(),
+    lastChange: new Date(),
+    dataFields: [
+      {
+        type: 'String',
+        name: 'Field1',
+      },
+      {
+        type: 'Number',
+        name: 'Field2',
+      },
+    ],
+    items: [1, 2, 3],
+  },
+];
+
 const App = () => {
   return (
     <NativeBaseProvider>
-      <Center
-        _dark={{bg: 'blueGray.900'}}
-        _light={{bg: 'blueGray.50'}}
-        px={4}
-        flex={1}>
-        <VStack space={5} alignItems="center">
-          <NativeBaseIcon />
-          <Heading size="lg">Welcome to NativeBase</Heading>
-          <HStack space={2} alignItems="center">
-            <Text>Edit</Text>
-            <Code>App.tsx</Code>
-            <Text>and save to reload.</Text>
-          </HStack>
-          <Link href="https://docs.nativebase.io" isExternal>
-            <Text color="primary.500" underline fontSize={'xl'}>
-              Learn NativeBase
-            </Text>
-          </Link>
-          <ToggleDarkMode />
+      <Box w="full" p={4}>
+        <VStack alignItems="center">
+          <Heading size="lg">Schemes</Heading>
+          <SchemeTable schemes={schemes} />
         </VStack>
-      </Center>
+      </Box>
     </NativeBaseProvider>
   );
 };
