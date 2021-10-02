@@ -1,52 +1,22 @@
 import React from 'react';
-import {Box, Heading, NativeBaseProvider, VStack} from 'native-base';
-import SchemeTable from './src/components/SchemeTable';
-import {Scheme} from './src/entities/Scheme';
+import {NativeBaseProvider} from 'native-base';
+import {NavigationContainer} from '@react-navigation/native';
+import {createNativeStackNavigator} from '@react-navigation/native-stack';
+import Schemes from './src/screens/Schemes';
+import SchemeEntries from './src/screens/SchemeEntries';
+import {RootStackParamList} from './src/screens/types';
 
-const schemes: Scheme[] = [
-  {
-    name: 'Scheme1',
-    createdAt: new Date(),
-    lastChange: new Date(),
-    dataFields: [
-      {
-        type: 'String',
-        name: 'Field1',
-      },
-      {
-        type: 'Number',
-        name: 'Field2',
-      },
-    ],
-    items: [1, 2, 3],
-  },
-  {
-    name: 'AnotherOne',
-    createdAt: new Date(),
-    lastChange: new Date(),
-    dataFields: [
-      {
-        type: 'String',
-        name: 'Field1',
-      },
-      {
-        type: 'Number',
-        name: 'Field2',
-      },
-    ],
-    items: [1, 2],
-  },
-];
+const Stack = createNativeStackNavigator<RootStackParamList>();
 
 const App = () => {
   return (
     <NativeBaseProvider>
-      <Box w="full" p={4}>
-        <VStack alignItems="center">
-          <Heading size="lg">Schemes</Heading>
-          <SchemeTable schemes={schemes} />
-        </VStack>
-      </Box>
+      <NavigationContainer>
+        <Stack.Navigator initialRouteName="Schemes">
+          <Stack.Screen name="Schemes" component={Schemes} />
+          <Stack.Screen name="Entries" component={SchemeEntries} />
+        </Stack.Navigator>
+      </NavigationContainer>
     </NativeBaseProvider>
   );
 };
