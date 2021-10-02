@@ -1,16 +1,15 @@
-import {NativeStackScreenProps} from '@react-navigation/native-stack';
+import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 
 export type RootStackParamList = {
   Schemes: undefined;
   Entries: undefined;
 };
-
-export type entriesScreenProp = NativeStackScreenProps<
+export type SchemesScreenProps = NativeStackNavigationProp<
   RootStackParamList,
-  'Entries'
+  'Schemes'
 >;
 
-export type schemesScreenProp = NativeStackScreenProps<
+export type EntriesScreenProps = NativeStackNavigationProp<
   RootStackParamList,
   'Schemes'
 >;

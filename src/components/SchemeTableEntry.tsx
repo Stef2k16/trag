@@ -10,14 +10,14 @@ import {
   Pressable,
 } from 'native-base';
 import {useNavigation} from '@react-navigation/native';
-import {schemesScreenProp} from '../screens/types';
+import {SchemesScreenProps} from '../screens/types';
 
 interface SchemeTableEntryProps {
   scheme: Scheme;
 }
 
 const SchemeTableEntry: FC<SchemeTableEntryProps> = ({scheme}) => {
-  const navigation = useNavigation<schemesScreenProp>();
+  const navigation = useNavigation<SchemesScreenProps>();
   return (
     <Pressable onPress={() => navigation.navigate('Entries')}>
       <Box borderBottomWidth="1" borderColor="coolGray.200" py={4}>
