@@ -4,12 +4,12 @@ export type RootStackParamList = {
   Schemes: undefined;
   Entries: undefined;
 };
-export type SchemesScreenProps = NativeStackNavigationProp<
+export type SchemesNavProps = NativeStackNavigationProp<
   RootStackParamList,
   'Schemes'
 >;
 
-export type EntriesScreenProps = NativeStackNavigationProp<
+export type EntriesNavProps = NativeStackNavigationProp<
   RootStackParamList,
   'Schemes'
 >;
