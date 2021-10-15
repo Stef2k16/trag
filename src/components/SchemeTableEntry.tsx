@@ -27,14 +27,15 @@ const SchemeTableEntry: FC<SchemeTableEntryProps> = ({scheme}) => {
             <Text fontSize="lg" bold>
               {scheme.name}
             </Text>
-            <Text fontSize="sm">{`Last change: ${scheme.lastChange.toLocaleDateString()}`}</Text>
+            <Text fontSize="sm">{`Last change: ${scheme.lastChangeAt.toLocaleDateString()}`}</Text>
           </VStack>
           <HStack alignItems="center">
             <Text fontSize="lg" mr={2} bold>
-              {scheme.items.length}
+              {/*TODO: implement count function*/}
+              {5}
             </Text>
             <Text fontSize="sm">
-              {scheme.items.length === 1 ? 'Item' : 'Items'}
+              {5 === 1 ? 'Item' : 'Items'}
             </Text>
           </HStack>
           <ChevronRightIcon />

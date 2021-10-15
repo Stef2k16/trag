@@ -1,14 +1,14 @@
 export interface Scheme {
   name: string;
   createdAt: Date;
-  lastChange: Date;
+  lastChangeAt: Date;
   dataFields: DataField[];
-  items: unknown[];
 }
 
-interface DataField {
+export interface DataField {
   type: DataType;
   name: string;
+  schemeName: string;
 }
 
 type DataType = 'String' | 'Number';
