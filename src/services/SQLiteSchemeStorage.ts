@@ -31,11 +31,25 @@ export class SQLiteSchemeStorage implements SchemeStorage {
             [field.type, field.name, scheme.name],
           );
         });
+        txn.executeSql(this.createItemTableQuery(scheme));
       });
     } catch (err) {
       console.error(err);
       throw err;
     }
+  }
+
+  // Create a query to add a new table for the items of a scheme.
+  private createItemTableQuery(scheme: Scheme): string {
+    let createItemTableQuery = `CREATE TABLE IF NOT EXISTS ${scheme.name}(`;
+    scheme.dataFields.forEach((field, index) => {
+      createItemTableQuery += `${field.name} ${field.type}`;
+      if (index < scheme.dataFields.length - 1) {
+        createItemTableQuery += ', ';
+      }
+    });
+    createItemTableQuery += ');';
+    return createItemTableQuery;
   }
 
   async getSchemes(): Promise<Scheme[]> {

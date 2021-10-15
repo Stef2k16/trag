@@ -11,4 +11,4 @@ export interface DataField {
   schemeName: string;
 }
 
-type DataType = 'String' | 'Number';
+type DataType = 'INTEGER' | 'REAL' | 'TEXT';

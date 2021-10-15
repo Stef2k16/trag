@@ -11,12 +11,12 @@ const scheme1: Scheme = {
   lastChangeAt: new Date(),
   dataFields: [
     {
-      type: 'String',
+      type: 'TEXT',
       name: 'Field1',
       schemeName: 'Scheme1',
     },
     {
-      type: 'Number',
+      type: 'REAL',
       name: 'Field2',
       schemeName: 'Scheme1',
     },
@@ -29,7 +29,6 @@ const Schemes: FC = () => {
 
   // Load schemes from database.
   const loadSchemes = async (storage: SchemeStorage) => {
-    console.log('Loading schemes with storage: ', storage);
     const storedSchemes = await storage.getSchemes();
     setSchemes(storedSchemes);
   };
