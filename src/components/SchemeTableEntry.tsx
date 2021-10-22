@@ -31,11 +31,10 @@ const SchemeTableEntry: FC<SchemeTableEntryProps> = ({scheme}) => {
           </VStack>
           <HStack alignItems="center">
             <Text fontSize="lg" mr={2} bold>
-              {/*TODO: implement count function*/}
-              {5}
+              {scheme.dataFields.length}
             </Text>
             <Text fontSize="sm">
-              {5 === 1 ? 'Item' : 'Items'}
+              {scheme.dataFields.length === 1 ? 'Column' : 'Columns'}
             </Text>
           </HStack>
           <ChevronRightIcon />
