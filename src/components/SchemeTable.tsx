@@ -5,13 +5,16 @@ import SchemeTableEntry from './SchemeTableEntry';
 
 interface SchemeTableProps {
   schemes: Scheme[];
+  deleteScheme: (scheme: Scheme) => Promise<void>;
 }
 
-const SchemeTable: FC<SchemeTableProps> = ({schemes}) => (
+const SchemeTable: FC<SchemeTableProps> = ({schemes, deleteScheme}) => (
   <Box w="full">
     <FlatList
       data={schemes}
-      renderItem={({item}) => <SchemeTableEntry scheme={item} />}
+      renderItem={({item}) => (
+        <SchemeTableEntry scheme={item} deleteScheme={deleteScheme} />
+      )}
       keyExtractor={item => item.name}
     />
     <Divider bg="indigo.500" />

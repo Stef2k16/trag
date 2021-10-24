@@ -18,7 +18,7 @@ export class SQLiteSchemeStorage implements SchemeStorage {
     try {
       await this.db.transaction(txn => {
         txn.executeSql(
-          `INSERT INTO ${this.schemeTable} (Name, CreatedAt, LastChangeAt) VALUES (?, ?, ?)`,
+          `INSERT INTO ${this.schemeTable} (Name, CreatedAt, LastChangeAt) VALUES (?, ?, ?);`,
           [
             scheme.name,
             scheme.createdAt.getTime(),
@@ -27,7 +27,7 @@ export class SQLiteSchemeStorage implements SchemeStorage {
         );
         scheme.dataFields.forEach(field => {
           txn.executeSql(
-            `INSERT INTO ${this.dataFieldTable} (Type, Name, SchemeName) VALUES (?, ?, ?)`,
+            `INSERT INTO ${this.dataFieldTable} (Type, Name, SchemeName) VALUES (?, ?, ?);`,
             [field.type, field.name, scheme.name],
           );
         });
@@ -84,6 +84,24 @@ export class SQLiteSchemeStorage implements SchemeStorage {
         }
       });
       return [...schemeMap.values()];
+    } catch (err) {
+      console.error(err);
+      throw err;
+    }
+  }
+
+  async deleteScheme(scheme: Scheme): Promise<void> {
+    try {
+      await this.db.transaction(txn => {
+        txn.executeSql(`DROP TABLE ${scheme.name};`);
+        txn.executeSql(
+          `DELETE FROM ${this.dataFieldTable} WHERE SchemeName=?;`,
+          [scheme.name],
+        );
+        txn.executeSql(`DELETE FROM ${this.schemeTable} WHERE Name=?;`, [
+          scheme.name,
+        ]);
+      });
     } catch (err) {
       console.error(err);
       throw err;

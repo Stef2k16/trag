@@ -41,6 +41,16 @@ const Schemes: FC = () => {
     }
   };
 
+  // Delete a scheme and the associated scheme table including all items.
+  const deleteScheme = async (scheme: Scheme) => {
+    if (schemeStorage != null) {
+      await schemeStorage.deleteScheme(scheme);
+      setSchemes(prevSchemes =>
+        prevSchemes.filter(({name}) => name !== scheme.name),
+      );
+    }
+  };
+
   useEffect(() => {
     if (schemeStorage != null) {
       loadSchemes(schemeStorage);
@@ -51,7 +61,7 @@ const Schemes: FC = () => {
     <Box w="full" p={4}>
       <VStack alignItems="center">
         <Heading size="lg">Schemes</Heading>
-        <SchemeTable schemes={schemes} />
+        <SchemeTable schemes={schemes} deleteScheme={deleteScheme} />
         <Fab
           placement="bottom-right"
           icon={<AddIcon size="4" />}
